@@ -1,6 +1,6 @@
 {
-  "buildCommand": "npm install --force && npm run build",
-  "installCommand": "npm install --force",
+  "buildCommand": "bash vercel-build.sh && npm run build",
+  "installCommand": "bash vercel-build.sh",
   "outputDirectory": ".",
   "framework": null,
   "functions": {
