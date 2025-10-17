@@ -1,8 +1,8 @@
-// api/stt.js — VirtualMix Whisper Proxy (Vercel Edge Safe)
+// api/stt.js — VirtualMix Whisper Proxy (Vercel Edge Safe, no node-fetch)
 import FormData from "form-data";
 
 export const config = {
-  runtime: "nodejs18.x", // wymusza Node runtime zamiast Edge
+  runtime: "nodejs18.x", // wymusza użycie Node 18 zamiast Edge
   api: {
     bodyParser: false,
     responseLimit: false
@@ -25,6 +25,7 @@ export default async function handler(req, res) {
     const hfToken = process.env.HF_TOKEN;
     if (!hfToken) throw new Error("Brak tokena HuggingFace w zmiennej środowiskowej HF_TOKEN");
 
+    // używamy natywnego fetch (wbudowanego w Vercel Node 18)
     const response = await fetch("https://api-inference.huggingface.co/models/Systran/faster-whisper-small", {
       method: "POST",
       headers: { Authorization: `Bearer ${hfToken}` },
