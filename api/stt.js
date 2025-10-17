@@ -22,7 +22,7 @@ export default async function handler(req, res) {
     form.append("file", buffer, { filename: "audio.mp3", contentType: "audio/mpeg" });
 
     const response = await fetch(
-      "https://api-inference.huggingface.co/models/openai/whisper-small-v2",
+      "https://api-inference.huggingface.co/models/Systran/faster-whisper-small",
       {
         method: "POST",
         headers: {
