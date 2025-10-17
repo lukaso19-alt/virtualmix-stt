@@ -1,14 +1,13 @@
 {
   "name": "virtualmix-stt",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "type": "module",
   "scripts": {
     "build": "echo 'Building VirtualMix STT Proxy...'",
     "start": "node api/stt.js"
   },
   "dependencies": {
-    "form-data": "^4.0.0",
-    "node-fetch": "^3.3.2"
+    "form-data": "^4.0.0"
   },
   "engines": {
     "node": ">=18"
