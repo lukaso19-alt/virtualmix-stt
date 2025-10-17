@@ -1,9 +1,6 @@
 // =======================================================
 // VirtualMix — STT Proxy (Whisper Final Vercel Version)
 // =======================================================
-// Działa z natywnym fetch w Node 18 — bez node-fetch!
-// =======================================================
-
 import FormData from "form-data";
 
 export const config = {
@@ -20,12 +17,10 @@ export default async function handler(req, res) {
   }
 
   try {
-    // 🔹 Odbierz dane audio z body
     const chunks = [];
     for await (const chunk of req) chunks.push(chunk);
     const buffer = Buffer.concat(chunks);
 
-    // 🔹 Utwórz form-data dla Whisper API
     const form = new FormData();
     form.append("file", buffer, {
       filename: "audio.mp3",
@@ -33,12 +28,12 @@ export default async function handler(req, res) {
     });
     form.append("model", "whisper-1");
 
-    // 🔹 Wywołaj OpenAI Whisper API
     const openaiKey = process.env.OPENAI_API_KEY;
     if (!openaiKey) {
       return res.status(500).json({ error: "Missing OPENAI_API_KEY" });
     }
 
+    // 🔹 używamy natywnego fetch z Node 18 (bez node-fetch)
     const response = await fetch("https://api.openai.com/v1/audio/transcriptions", {
       method: "POST",
       headers: {
@@ -52,7 +47,6 @@ export default async function handler(req, res) {
       return res.status(response.status).json({ error: errText });
     }
 
-    // 🔹 Odbierz wynik transkrypcji
     const data = await response.json();
     res.status(200).json({ text: data.text || "" });
 
