@@ -1,14 +1,11 @@
 {
   "buildCommand": "bash vercel-build.sh && npm run build",
-  "installCommand": "bash vercel-build.sh",
   "outputDirectory": ".",
   "framework": null,
+  "installCommand": "bash vercel-build.sh",
   "functions": {
     "api/*.js": {
       "runtime": "nodejs18.x"
     }
-  },
-  "env": {
-    "NODE_ENV": "production"
   }
 }
