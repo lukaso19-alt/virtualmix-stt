@@ -1,11 +1,11 @@
 {
-  "buildCommand": "npm install && npm run build",
-  "outputDirectory": ".",
+  "buildCommand": "npm install",
   "installCommand": "npm install",
+  "outputDirectory": ".",
   "framework": null,
   "functions": {
-    "api/**.js": {
-      "runtime": "nodejs18.x"
+    "api/**/*.js": {
+      "runtime": "vercel-nodejs@18.0.0"
     }
   }
 }
