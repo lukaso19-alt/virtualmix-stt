@@ -1,10 +1,8 @@
 {
   "name": "virtualmix-stt",
-  "version": "1.0.3",
-  "description": "VirtualMix Whisper STT Proxy for HuggingFace on Vercel",
+  "version": "1.0.5",
   "type": "module",
   "scripts": {
-    "preinstall": "npm install form-data node-fetch",
     "build": "echo 'Building VirtualMix STT Proxy...'",
     "start": "node api/stt.js"
   },
@@ -14,6 +12,5 @@
   },
   "engines": {
     "node": ">=18"
-  },
-  "license": "ISC"
+  }
 }
