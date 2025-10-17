@@ -1,12 +1,12 @@
-// api/stt.js — VirtualMix Whisper Proxy (final, Vercel safe)
+// api/stt.js — VirtualMix Whisper Proxy (Vercel Final Fix)
 import FormData from "form-data";
 
 export const config = {
   runtime: "nodejs18.x",
   api: {
     bodyParser: false,
-    responseLimit: false
-  }
+    responseLimit: false,
+  },
 };
 
 export default async function handler(req, res) {
@@ -15,6 +15,7 @@ export default async function handler(req, res) {
   }
 
   try {
+    // zbieramy dane audio z body
     const chunks = [];
     for await (const chunk of req) chunks.push(chunk);
     const buffer = Buffer.concat(chunks);
@@ -22,26 +23,29 @@ export default async function handler(req, res) {
     const form = new FormData();
     form.append("file", buffer, {
       filename: "audio.mp3",
-      contentType: "audio/mpeg"
+      contentType: "audio/mpeg",
     });
 
     const hfToken = process.env.HF_TOKEN;
-    if (!hfToken)
-      throw new Error("Brak tokena HuggingFace w zmiennej środowiskowej HF_TOKEN");
+    if (!hfToken) {
+      throw new Error("Brak tokena HuggingFace w zmiennej HF_TOKEN");
+    }
 
-    // używamy natywnego fetch dostępnego w Node 18
+    // używamy natywnego fetch (Node 18 ma go wbudowanego!)
     const response = await fetch(
       "https://api-inference.huggingface.co/models/Systran/faster-whisper-small",
       {
         method: "POST",
-        headers: { Authorization: `Bearer ${hfToken}` },
-        body: form
+        headers: {
+          Authorization: `Bearer ${hfToken}`,
+        },
+        body: form,
       }
     );
 
     if (!response.ok) {
-      const txt = await response.text();
-      throw new Error(`Błąd HuggingFace: ${response.status} ${txt}`);
+      const errText = await response.text();
+      throw new Error(`Błąd HuggingFace: ${response.status} ${errText}`);
     }
 
     const data = await response.json();
