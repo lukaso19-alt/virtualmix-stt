@@ -1,11 +1,14 @@
 {
-  "buildCommand": "npm install && npm run build",
+  "buildCommand": "npm install --force && npm run build",
+  "installCommand": "npm install --force",
   "outputDirectory": ".",
   "framework": null,
-  "installCommand": "npm install",
   "functions": {
     "api/*.js": {
       "runtime": "nodejs18.x"
     }
+  },
+  "env": {
+    "NODE_ENV": "production"
   }
 }
