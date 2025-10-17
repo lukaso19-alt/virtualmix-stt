@@ -1,12 +1,11 @@
 {
   "name": "virtualmix-stt",
-  "version": "1.0.1",
-  "description": "VirtualMix Speech-to-Text Proxy for Whisper API",
+  "version": "1.0.2",
+  "description": "VirtualMix Whisper STT Proxy for HuggingFace on Vercel",
   "type": "module",
   "scripts": {
     "build": "echo 'Building VirtualMix STT Proxy...'",
-    "start": "node api/stt.js",
-    "vercel-build": "npm install && node api/stt.js"
+    "start": "node api/stt.js"
   },
   "dependencies": {
     "form-data": "^4.0.0",
