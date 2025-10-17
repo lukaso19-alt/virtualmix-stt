@@ -1,5 +1,11 @@
 #!/bin/bash
-echo "🔧 VirtualMix STT Build started..."
-npm install -g npm@latest
-npm install form-data node-fetch --force
+echo "🟢 Running full clean build for VirtualMix STT..."
+
+# Usuwamy ewentualne pozostałości po starych buildach
+rm -rf node_modules
+rm -f package-lock.json
+
+# Instalujemy tylko potrzebne pakiety
+npm install form-data
+
 echo "✅ Dependencies installed."
