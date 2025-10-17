@@ -1,0 +1,11 @@
+{
+  "buildCommand": "npm install && npm run build",
+  "outputDirectory": ".",
+  "framework": null,
+  "installCommand": "npm install",
+  "functions": {
+    "api/*.js": {
+      "runtime": "nodejs18.x"
+    }
+  }
+}
