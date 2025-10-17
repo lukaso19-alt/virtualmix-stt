@@ -1,6 +1,6 @@
 {
-  "buildCommand": "npm install",
-  "installCommand": "npm install",
+  "installCommand": "pnpm install --no-frozen-lockfile",
+  "buildCommand": "pnpm install --no-frozen-lockfile",
   "outputDirectory": ".",
   "framework": null
 }
